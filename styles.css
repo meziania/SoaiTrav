@@ -81,6 +81,11 @@ body {
   padding: 0 1.25rem;
 }
 
+/* Éviter le débordement horizontal sur mobile */
+html, body {
+  overflow-x: hidden;
+}
+
 /* Header */
 .header {
   background: var(--bg-secondary);
@@ -149,6 +154,8 @@ body {
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s, transform 0.2s;
+  padding: 0.35em 0.5em;
+  display: inline-block;
 }
 
 .nav a:hover {
@@ -503,35 +510,56 @@ body.anim-ready .section:not(.animate-in) .download-card {
   font-size: 0.9375rem;
 }
 
-/* Responsive */
-@media (max-width: 640px) {
-  .nav {
-    width: 100%;
-    justify-content: center;
+/* ========== Responsive — Tablettes et grands téléphones ========== */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
   }
 
-  .hero {
-    padding: 2rem 0 3rem;
+  .section {
+    padding: 2rem 0;
   }
 
-  .hero-logo {
-    height: 80px;
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .section-intro {
+    font-size: 0.9375rem;
   }
 
   .cards {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
-  .doc-cards {
-    grid-template-columns: 1fr;
+  .card {
+    padding: 1.25rem;
+  }
+
+  .btn {
+    min-height: 44px;
+    padding: 0.85rem 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .download-card {
-    padding: 1.5rem;
+    padding: 1.5rem 1rem;
   }
 
   .guide-block {
-    overflow-x: auto;
+    padding: 1.25rem;
+  }
+
+  .guide-block h3 {
+    font-size: 1rem;
+  }
+
+  .guide-block ul,
+  .guide-block p {
+    font-size: 0.9rem;
   }
 
   .guide-table {
@@ -540,6 +568,210 @@ body.anim-ready .section:not(.animate-in) .download-card {
 
   .guide-table th,
   .guide-table td {
+    padding: 0.5rem 0.4rem;
+  }
+}
+
+/* ========== Responsive — Téléphones ========== */
+@media (max-width: 640px) {
+  .header {
+    padding: 0.5rem 0;
+  }
+
+  .header-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .brand {
+    justify-content: center;
+  }
+
+  .logo {
+    height: 40px;
+  }
+
+  .brand-name {
+    font-size: 1.35rem;
+  }
+
+  .nav {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .nav a {
+    min-height: 44px;
+    padding: 0.5rem 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+
+  .hero {
+    padding: 1.75rem 0 2.5rem;
+  }
+
+  .hero-inner {
+    gap: 0.75rem;
+  }
+
+  .hero-logo {
+    height: 72px;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+
+  .hero-tagline {
+    font-size: 1rem;
+    max-width: none;
+    padding: 0 0.5rem;
+  }
+
+  .hero .btn-primary {
+    width: 100%;
+    max-width: 280px;
+    min-height: 48px;
+    font-size: 1rem;
+  }
+
+  .section {
+    padding: 1.75rem 0;
+  }
+
+  .section-title {
+    font-size: 1.35rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-intro {
+    margin-bottom: 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    margin-bottom: 1.5rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
+
+  .card p {
+    font-size: 0.875rem;
+  }
+
+  .prerequis.card {
+    padding: 1rem;
+  }
+
+  .doc-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .download-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .download-title {
+    font-size: 1.25rem;
+  }
+
+  .download-desc {
+    font-size: 0.9rem;
+  }
+
+  .btn-download {
+    width: 100%;
+    max-width: 100%;
+    min-height: 48px;
+    font-size: 1rem;
+  }
+
+  .guide-block {
+    overflow-x: auto;
+    padding: 1rem;
+  }
+
+  .guide-table {
+    font-size: 0.8125rem;
+    display: block;
+  }
+
+  .guide-table thead {
+    display: none;
+  }
+
+  .guide-table tr {
+    display: block;
+    margin-bottom: 0.75rem;
     padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius);
+  }
+
+  .guide-table td {
+    display: block;
+    padding: 0.25rem 0;
+    border: none;
+  }
+
+  .guide-table td:first-child {
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+
+  .footer {
+    padding: 1rem 0;
+  }
+
+  .footer p {
+    font-size: 0.8125rem;
+    padding: 0 0.5rem;
+  }
+}
+
+/* ========== Responsive — Petits téléphones ========== */
+@media (max-width: 380px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+
+  .hero-title {
+    font-size: 1.5rem;
+  }
+
+  .hero-tagline {
+    font-size: 0.9375rem;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+  }
+
+  .brand-name {
+    font-size: 1.2rem;
+  }
+
+  .nav a {
+    font-size: 0.85rem;
+    padding: 0.45rem 0.5rem;
   }
 }
