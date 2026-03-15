@@ -1,0 +1,545 @@
+/* SoaiTrav — Charte graphique identique à l'application */
+
+:root {
+  --bg-main: #0C335B;
+  --bg-secondary: #0A2845;
+  --bg-dark: #081C30;
+  --bg-cards: #153a5e;
+  --border: #1e4976;
+  --accent: #F48024;
+  --accent-border: #d96d1a;
+  --text: #FFFFFF;
+  --text-secondary: #b8c9e0;
+  --error: #F87171;
+  --radius: 8px;
+  --radius-lg: 10px;
+  --anim-duration: 0.5s;
+  --anim-ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  background: var(--bg-main);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* Header */
+.header {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  animation: fadeInDown 0.4s var(--anim-ease);
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo {
+  display: block;
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.brand-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.brand-soai {
+  color: var(--accent);
+}
+
+.brand-trav {
+  color: var(--text);
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.nav a:hover {
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-main) 100%);
+  padding: 3rem 0 4rem;
+  text-align: center;
+}
+
+.hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hero-logo {
+  height: 120px;
+  width: auto;
+  object-fit: contain;
+  animation: fadeInUp var(--anim-duration) var(--anim-ease) both;
+}
+
+.hero-title {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  animation: fadeInUp var(--anim-duration) var(--anim-ease) 0.15s both;
+}
+
+.hero-tagline {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+  max-width: 32ch;
+  animation: fadeInUp var(--anim-duration) var(--anim-ease) 0.3s both;
+}
+
+.hero .btn-primary {
+  margin-top: 0.5rem;
+  animation: fadeInUp var(--anim-duration) var(--anim-ease) 0.45s both;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  text-decoration: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s var(--anim-ease);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--text);
+  border: 2px solid var(--accent-border);
+}
+
+.btn-primary:hover {
+  background: #e67320;
+  border-color: #c45f18;
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: var(--bg-cards);
+  color: var(--text);
+  border: 2px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: #1a4570;
+  border-color: #2a5a8a;
+  color: var(--text);
+}
+
+/* Sections */
+.section {
+  padding: 3rem 0;
+}
+
+.section-title {
+  margin: 0 0 1rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.section-intro {
+  margin: 0 0 2rem;
+  color: var(--text-secondary);
+  max-width: 60ch;
+}
+
+/* Cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background: var(--bg-cards);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: transform 0.25s var(--anim-ease), box-shadow 0.25s var(--anim-ease);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+body.anim-ready .section:not(.animate-in) .section-title,
+body.anim-ready .section:not(.animate-in) .section-intro,
+body.anim-ready .section:not(.animate-in) .card,
+body.anim-ready .section:not(.animate-in) .guide-block,
+body.anim-ready .section:not(.animate-in) .download-card {
+  opacity: 0;
+}
+
+.section.animate-in .section-title {
+  animation: fadeInUp var(--anim-duration) var(--anim-ease) both;
+}
+
+.section.animate-in .section-intro {
+  animation: fadeInUp var(--anim-duration) var(--anim-ease) 0.1s both;
+}
+
+.section.animate-in .card {
+  animation: fadeInUp var(--anim-duration) var(--anim-ease) both;
+}
+
+.section.animate-in .cards .card:nth-child(1) { animation-delay: 0.1s; }
+.section.animate-in .cards .card:nth-child(2) { animation-delay: 0.15s; }
+.section.animate-in .cards .card:nth-child(3) { animation-delay: 0.2s; }
+.section.animate-in .cards .card:nth-child(4) { animation-delay: 0.25s; }
+.section.animate-in .cards .card:nth-child(5) { animation-delay: 0.3s; }
+.section.animate-in .prerequis.card { animation-delay: 0.35s; }
+
+.section.animate-in .guide-block {
+  animation: fadeInUp var(--anim-duration) var(--anim-ease) both;
+}
+
+.section.animate-in .guide-block:nth-child(2) { animation-delay: 0.05s; }
+.section.animate-in .guide-block:nth-child(3) { animation-delay: 0.1s; }
+.section.animate-in .guide-block:nth-child(4) { animation-delay: 0.15s; }
+.section.animate-in .guide-block:nth-child(5) { animation-delay: 0.2s; }
+.section.animate-in .guide-block:nth-child(6) { animation-delay: 0.25s; }
+.section.animate-in .guide-block:nth-child(7) { animation-delay: 0.3s; }
+.section.animate-in .guide-block:nth-child(8) { animation-delay: 0.35s; }
+.section.animate-in .guide-block:nth-child(9) { animation-delay: 0.4s; }
+.section.animate-in .guide-block:nth-child(10) { animation-delay: 0.45s; }
+
+.section.animate-in .download-card {
+  animation: scaleIn var(--anim-duration) var(--anim-ease) both;
+}
+
+.card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.card p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+}
+
+.card code {
+  background: var(--bg-dark);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: var(--text-secondary);
+}
+
+.prerequis {
+  max-width: 560px;
+}
+
+/* Documentation */
+.doc-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.doc-card code {
+  word-break: break-all;
+}
+
+/* Guide d'utilisation */
+.section-guide {
+  background: var(--bg-secondary);
+}
+
+.guide-block {
+  margin-bottom: 1.5rem;
+}
+
+.guide-block:last-child {
+  margin-bottom: 0;
+}
+
+.guide-block h3 {
+  margin: 0 0 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.guide-block ul {
+  margin: 0 0 1rem;
+  padding-left: 1.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+}
+
+.guide-block ul:last-child,
+.guide-block p:last-child {
+  margin-bottom: 0;
+}
+
+.guide-block li {
+  margin-bottom: 0.5rem;
+}
+
+.guide-block li:last-child {
+  margin-bottom: 0;
+}
+
+.guide-pre {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow-x: auto;
+}
+
+.guide-pre code {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  white-space: pre;
+}
+
+.guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+}
+
+.guide-table th,
+.guide-table td {
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.guide-table th {
+  color: var(--text);
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.guide-table tr:last-child td {
+  border-bottom: none;
+}
+
+.guide-refs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  list-style: none;
+  padding-left: 0;
+}
+
+.guide-refs a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.guide-refs a:hover {
+  text-decoration: underline;
+}
+
+/* Download section */
+.section-download {
+  background: var(--bg-secondary);
+  padding: 3rem 0 4rem;
+}
+
+.download-card {
+  text-align: center;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.download-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.download-desc {
+  margin: 0 0 1.5rem;
+  color: var(--text-secondary);
+}
+
+.btn-download {
+  font-size: 1.125rem;
+  padding: 1rem 2rem;
+}
+
+/* Footer */
+.footer {
+  margin-top: auto;
+  background: var(--bg-dark);
+  border-top: 1px solid var(--border);
+  padding: 1.25rem 0;
+  text-align: center;
+}
+
+.footer p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .nav {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero {
+    padding: 2rem 0 3rem;
+  }
+
+  .hero-logo {
+    height: 80px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .doc-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .download-card {
+    padding: 1.5rem;
+  }
+
+  .guide-block {
+    overflow-x: auto;
+  }
+
+  .guide-table {
+    font-size: 0.875rem;
+  }
+
+  .guide-table th,
+  .guide-table td {
+    padding: 0.5rem;
+  }
+}
