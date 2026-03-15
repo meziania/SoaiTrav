@@ -163,6 +163,50 @@ html, body {
   transform: translateY(-1px);
 }
 
+/* Bouton hamburger — masqué sur desktop */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  color: var(--text);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.nav-toggle:hover {
+  background: var(--bg-cards);
+  border-color: var(--accent);
+}
+
+.nav-toggle-bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+  margin: 0 auto;
+  transition: transform 0.25s var(--anim-ease), opacity 0.25s;
+}
+
+body.nav-open .nav-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+body.nav-open .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+body.nav-open .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 /* Hero */
 .hero {
   background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-main) 100%);
@@ -510,6 +554,61 @@ body.anim-ready .section:not(.animate-in) .download-card {
   font-size: 0.9375rem;
 }
 
+/* ========== Responsive — Menu dropdown (tablettes et mobiles) ========== */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .header {
+    position: relative;
+  }
+
+  .header-inner {
+    flex-wrap: nowrap;
+  }
+
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: max-height 0.3s var(--anim-ease), opacity 0.25s, visibility 0.25s;
+  }
+
+  body.nav-open .nav {
+    max-height: 280px;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav a {
+    display: block;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    min-height: 48px;
+    align-items: center;
+  }
+
+  .nav a:last-child {
+    border-bottom: none;
+  }
+
+  .nav a:hover {
+    background: var(--bg-cards);
+    transform: none;
+  }
+}
+
 /* ========== Responsive — Tablettes et grands téléphones ========== */
 @media (max-width: 768px) {
   .container {
@@ -578,16 +677,6 @@ body.anim-ready .section:not(.animate-in) .download-card {
     padding: 0.5rem 0;
   }
 
-  .header-inner {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.75rem;
-  }
-
-  .brand {
-    justify-content: center;
-  }
-
   .logo {
     height: 40px;
   }
@@ -596,19 +685,7 @@ body.anim-ready .section:not(.animate-in) .download-card {
     font-size: 1.35rem;
   }
 
-  .nav {
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
   .nav a {
-    min-height: 44px;
-    padding: 0.5rem 0.75rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     font-size: 0.9rem;
   }
 
@@ -772,6 +849,5 @@ body.anim-ready .section:not(.animate-in) .download-card {
 
   .nav a {
     font-size: 0.85rem;
-    padding: 0.45rem 0.5rem;
   }
 }

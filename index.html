@@ -18,7 +18,12 @@
         <img src="logo.png" alt="SoaiTrav" class="logo" width="48" height="48">
         <span class="brand-name"><span class="brand-soai">Soai</span><span class="brand-trav">Trav</span></span>
       </a>
-      <nav class="nav">
+      <button type="button" class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-menu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <nav class="nav" id="nav-menu">
         <a href="#presentation">Présentation</a>
         <a href="#guide">Guide d'utilisation</a>
         <a href="#telechargement">Télécharger</a>
@@ -182,6 +187,31 @@
         });
       }, { rootMargin: '0px 0px -80px 0px', threshold: 0 });
       sections.forEach(function(section) { observer.observe(section); });
+    })();
+
+    (function() {
+      var toggle = document.querySelector('.nav-toggle');
+      var nav = document.getElementById('nav-menu');
+      if (!toggle || !nav) return;
+      toggle.addEventListener('click', function() {
+        var open = document.body.classList.toggle('nav-open');
+        toggle.setAttribute('aria-expanded', open);
+        toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+      });
+      nav.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          document.body.classList.remove('nav-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', 'Ouvrir le menu');
+        });
+      });
+      document.addEventListener('click', function(e) {
+        if (document.body.classList.contains('nav-open') && !toggle.contains(e.target) && !nav.contains(e.target)) {
+          document.body.classList.remove('nav-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', 'Ouvrir le menu');
+        }
+      });
     })();
   </script>
 </body>
